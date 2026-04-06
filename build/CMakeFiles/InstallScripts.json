@@ -1,0 +1,8 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/Users/twinc/SDEInc/StreamerAnalyticsTool/extension-terminal-sample/build/cmake_install.cmake",
+		"C:/Users/twinc/SDEInc/StreamerAnalyticsTool/extension-terminal-sample/build/tests/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

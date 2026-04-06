@@ -1,0 +1,62 @@
+﻿{
+    "generatedAt":  "2026-04-05T02:37:12",
+    "manifestPath":  "tests/rom_manifest.csv",
+    "romsRoot":  "roms/test",
+    "totals":  {
+                   "total":  4,
+                   "present":  0,
+                   "missing":  4
+               },
+    "priorities":  [
+                       {
+                           "priority":  "critical",
+                           "total":  2,
+                           "present":  0,
+                           "missing":  2
+                       },
+                       {
+                           "priority":  "high",
+                           "total":  2,
+                           "present":  0,
+                           "missing":  2
+                       }
+                   ],
+    "missingFiles":  [
+                         {
+                             "suite":  "blargg",
+                             "mode":  "blargg",
+                             "priority":  "critical",
+                             "relativePath":  "blargg/cpu_instrs/cpu_instrs.gb",
+                             "fullPath":  "roms\\test\\blargg\\cpu_instrs\\cpu_instrs.gb",
+                             "exists":  false,
+                             "lineNumber":  8
+                         },
+                         {
+                             "suite":  "blargg",
+                             "mode":  "blargg",
+                             "priority":  "critical",
+                             "relativePath":  "blargg/instr_timing/instr_timing.gb",
+                             "fullPath":  "roms\\test\\blargg\\instr_timing\\instr_timing.gb",
+                             "exists":  false,
+                             "lineNumber":  9
+                         },
+                         {
+                             "suite":  "mooneye",
+                             "mode":  "mooneye",
+                             "priority":  "high",
+                             "relativePath":  "mooneye/acceptance/ppu/lcdon_write_timing.gb",
+                             "fullPath":  "roms\\test\\mooneye\\acceptance\\ppu\\lcdon_write_timing.gb",
+                             "exists":  false,
+                             "lineNumber":  11
+                         },
+                         {
+                             "suite":  "mooneye",
+                             "mode":  "mooneye",
+                             "priority":  "high",
+                             "relativePath":  "mooneye/acceptance/timer/tim00.gb",
+                             "fullPath":  "roms\\test\\mooneye\\acceptance\\timer\\tim00.gb",
+                             "exists":  false,
+                             "lineNumber":  10
+                         }
+                     ]
+}

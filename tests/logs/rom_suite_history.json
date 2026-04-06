@@ -1,0 +1,33 @@
+﻿{
+    "generatedAt":  "2026-04-05T02:33:20",
+    "runs":  [
+                 {
+                     "generatedAt":  "2026-04-05T00:53:01",
+                     "total":  4,
+                     "passed":  0,
+                     "failed":  4,
+                     "passRate":  0
+                 },
+                 {
+                     "generatedAt":  "2026-04-05T02:25:03",
+                     "total":  4,
+                     "passed":  0,
+                     "failed":  4,
+                     "passRate":  0
+                 },
+                 {
+                     "generatedAt":  "2026-04-05T02:27:00",
+                     "total":  4,
+                     "passed":  0,
+                     "failed":  4,
+                     "passRate":  0
+                 },
+                 {
+                     "generatedAt":  "2026-04-05T02:33:19",
+                     "total":  4,
+                     "passed":  0,
+                     "failed":  4,
+                     "passRate":  0
+                 }
+             ]
+}

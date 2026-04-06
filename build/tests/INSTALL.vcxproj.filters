@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\twinc\SDEInc\StreamerAnalyticsTool\extension-terminal-sample\build\CMakeFiles\55c463850ec66b2eb0c36586e1fe90c9\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{332EBEAE-4311-3004-AA1A-56EDCEE45459}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

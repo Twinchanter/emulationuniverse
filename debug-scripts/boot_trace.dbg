@@ -1,0 +1,9 @@
+# EmulationUniverse debugger script: boot trace
+# Show initial registers, execute instructions, then inspect memory.
+
+regs
+step 32
+regs
+mem 0100 32
+mem ff00 16
+quit

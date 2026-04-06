@@ -1,0 +1,4 @@
+# Uses include command to compose scripts
+include common/baseline.dbg
+mem 0100 16
+quit

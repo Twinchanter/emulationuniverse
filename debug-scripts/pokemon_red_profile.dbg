@@ -1,0 +1,10 @@
+# Pokemon Red repeatable debug profile
+# Uses shared baseline setup, then traces into game code.
+
+include common/baseline.dbg
+break 0150
+run 2000000
+regs
+mem c000 32
+mem d000 32
+quit

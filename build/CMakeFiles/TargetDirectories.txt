@@ -1,0 +1,10 @@
+C:/Users/twinc/SDEInc/StreamerAnalyticsTool/extension-terminal-sample/build/CMakeFiles/gbemu_core.dir
+C:/Users/twinc/SDEInc/StreamerAnalyticsTool/extension-terminal-sample/build/CMakeFiles/emulationuniverse.dir
+C:/Users/twinc/SDEInc/StreamerAnalyticsTool/extension-terminal-sample/build/CMakeFiles/RUN_TESTS.dir
+C:/Users/twinc/SDEInc/StreamerAnalyticsTool/extension-terminal-sample/build/CMakeFiles/INSTALL.dir
+C:/Users/twinc/SDEInc/StreamerAnalyticsTool/extension-terminal-sample/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/twinc/SDEInc/StreamerAnalyticsTool/extension-terminal-sample/build/CMakeFiles/ZERO_CHECK.dir
+C:/Users/twinc/SDEInc/StreamerAnalyticsTool/extension-terminal-sample/build/tests/CMakeFiles/gbemu_system_tests.dir
+C:/Users/twinc/SDEInc/StreamerAnalyticsTool/extension-terminal-sample/build/tests/CMakeFiles/gbemu_cpu_micro_tests.dir
+C:/Users/twinc/SDEInc/StreamerAnalyticsTool/extension-terminal-sample/build/tests/CMakeFiles/RUN_TESTS.dir
+C:/Users/twinc/SDEInc/StreamerAnalyticsTool/extension-terminal-sample/build/tests/CMakeFiles/INSTALL.dir

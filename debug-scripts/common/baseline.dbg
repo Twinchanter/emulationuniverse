@@ -1,0 +1,4 @@
+# Shared baseline setup for debugger scripts
+regs
+step 8
+regs

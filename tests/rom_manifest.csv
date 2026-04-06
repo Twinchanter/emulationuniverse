@@ -1,0 +1,157 @@
+# EmulationUniverse ROM suite manifest
+# Format: suite,mode,path,priority,max_frames
+# mode values supported: blargg, mooneye
+# priority values: critical, high, medium, low
+
+suite,mode,path,priority,max_frames
+
+# ── Blargg: CPU Instructions (critical) ───────────────────────────────────────
+blargg,blargg,blargg/cpu_instrs/cpu_instrs.gb,critical,12000
+blargg,blargg,blargg/cpu_instrs/individual/01-special.gb,critical,1600
+blargg,blargg,blargg/cpu_instrs/individual/02-interrupts.gb,critical,1600
+blargg,blargg,"blargg/cpu_instrs/individual/03-op sp,hl.gb",critical,1600
+blargg,blargg,"blargg/cpu_instrs/individual/04-op r,imm.gb",critical,1600
+blargg,blargg,blargg/cpu_instrs/individual/05-op rp.gb,critical,1600
+blargg,blargg,"blargg/cpu_instrs/individual/06-ld r,r.gb",critical,1600
+blargg,blargg,"blargg/cpu_instrs/individual/07-jr,jp,call,ret,rst.gb",critical,1600
+blargg,blargg,blargg/cpu_instrs/individual/08-misc instrs.gb,critical,1600
+blargg,blargg,"blargg/cpu_instrs/individual/09-op r,r.gb",critical,1600
+blargg,blargg,blargg/cpu_instrs/individual/10-bit ops.gb,critical,1600
+blargg,blargg,"blargg/cpu_instrs/individual/11-op a,(hl).gb",critical,1600
+
+# ── Blargg: Instruction Timing (critical) ─────────────────────────────────────
+blargg,blargg,blargg/instr_timing/instr_timing.gb,critical,1600
+
+# ── Blargg: Memory Timing (high) ──────────────────────────────────────────────
+blargg,blargg,blargg/mem_timing/mem_timing.gb,high,1600
+blargg,blargg,blargg/mem_timing/individual/01-read_timing.gb,high,1200
+blargg,blargg,blargg/mem_timing/individual/02-write_timing.gb,high,1200
+blargg,blargg,blargg/mem_timing/individual/03-modify_timing.gb,high,1200
+blargg,blargg,blargg/mem_timing-2/mem_timing.gb,high,1600
+blargg,blargg,blargg/mem_timing-2/rom_singles/01-read_timing.gb,high,1200
+blargg,blargg,blargg/mem_timing-2/rom_singles/02-write_timing.gb,high,1200
+blargg,blargg,blargg/mem_timing-2/rom_singles/03-modify_timing.gb,high,1200
+
+# ── Blargg: OAM Bug (medium) ──────────────────────────────────────────────────
+blargg,blargg,blargg/oam_bug/oam_bug.gb,medium,2000
+blargg,blargg,blargg/oam_bug/rom_singles/1-lcd_sync.gb,medium,1600
+blargg,blargg,blargg/oam_bug/rom_singles/2-causes.gb,medium,1600
+blargg,blargg,blargg/oam_bug/rom_singles/3-non_causes.gb,medium,1600
+blargg,blargg,blargg/oam_bug/rom_singles/4-scanline_timing.gb,medium,1600
+blargg,blargg,blargg/oam_bug/rom_singles/5-timing_bug.gb,medium,1600
+blargg,blargg,blargg/oam_bug/rom_singles/6-timing_no_bug.gb,medium,1600
+blargg,blargg,blargg/oam_bug/rom_singles/7-timing_effect.gb,medium,1600
+blargg,blargg,blargg/oam_bug/rom_singles/8-instr_effect.gb,medium,1600
+blargg,blargg,blargg/oam_bug-2/oam_bug.gb,medium,2000
+
+# ── Blargg: DMG Sound (low) ───────────────────────────────────────────────────
+blargg,blargg,blargg/dmg_sound/dmg_sound.gb,low,2400
+blargg,blargg,blargg/dmg_sound/rom_singles/01-registers.gb,low,1600
+blargg,blargg,blargg/dmg_sound/rom_singles/02-len ctr.gb,low,1600
+blargg,blargg,blargg/dmg_sound/rom_singles/03-trigger.gb,low,1600
+blargg,blargg,blargg/dmg_sound/rom_singles/04-sweep.gb,low,1600
+blargg,blargg,blargg/dmg_sound/rom_singles/11-regs after power.gb,low,1600
+blargg,blargg,blargg/dmg_sound-2/dmg_sound.gb,low,2400
+
+# ── Mooneye: Timer (critical) ─────────────────────────────────────────────────
+mooneye,mooneye,mooneye/acceptance/acceptance/timer/tim00.gb,critical,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/timer/tim01.gb,critical,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/timer/tim10.gb,critical,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/timer/tim11.gb,critical,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/timer/div_write.gb,critical,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/timer/rapid_toggle.gb,critical,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/timer/tima_reload.gb,critical,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/timer/tima_write_reloading.gb,critical,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/timer/tma_write_reloading.gb,critical,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/timer/tim00_div_trigger.gb,high,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/timer/tim01_div_trigger.gb,high,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/timer/tim10_div_trigger.gb,high,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/timer/tim11_div_trigger.gb,high,2200
+
+# ── Mooneye: Interrupt & EI/DI Timing (critical) ──────────────────────────────
+mooneye,mooneye,mooneye/acceptance/acceptance/div_timing.gb,critical,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/ei_timing.gb,critical,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/ei_sequence.gb,critical,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/di_timing-GS.gb,critical,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/intr_timing.gb,critical,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/halt_ime0_ei.gb,critical,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/halt_ime0_nointr_timing.gb,critical,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/halt_ime1_timing.gb,critical,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/rapid_di_ei.gb,critical,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/if_ie_registers.gb,critical,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/interrupts/ie_push.gb,critical,2200
+
+# ── Mooneye: Call/Ret/JP Timing (critical) ────────────────────────────────────
+mooneye,mooneye,mooneye/acceptance/acceptance/call_timing.gb,critical,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/call_timing2.gb,critical,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/call_cc_timing.gb,critical,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/call_cc_timing2.gb,critical,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/ret_timing.gb,critical,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/ret_cc_timing.gb,critical,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/reti_timing.gb,critical,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/reti_intr_timing.gb,critical,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/jp_timing.gb,critical,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/jp_cc_timing.gb,critical,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/rst_timing.gb,critical,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/add_sp_e_timing.gb,critical,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/ld_hl_sp_e_timing.gb,critical,2200
+
+# ── Mooneye: Push/Pop & Stack (high) ──────────────────────────────────────────
+mooneye,mooneye,mooneye/acceptance/acceptance/push_timing.gb,high,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/pop_timing.gb,high,2200
+
+# ── Mooneye: Bits & Registers (high) ──────────────────────────────────────────
+mooneye,mooneye,mooneye/acceptance/acceptance/bits/mem_oam.gb,high,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/bits/reg_f.gb,high,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/halt_ime1_timing2-GS.gb,high,2200
+
+# ── Mooneye: Instructions (high) ──────────────────────────────────────────────
+mooneye,mooneye,mooneye/acceptance/acceptance/instr/daa.gb,high,2200
+
+# ── Mooneye: OAM DMA (high) ───────────────────────────────────────────────────
+mooneye,mooneye,mooneye/acceptance/acceptance/oam_dma/basic.gb,high,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/oam_dma/reg_read.gb,high,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/oam_dma_restart.gb,high,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/oam_dma_start.gb,high,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/oam_dma_timing.gb,high,2200
+
+# ── Mooneye: PPU (high) ───────────────────────────────────────────────────────
+mooneye,mooneye,mooneye/acceptance/acceptance/ppu/intr_2_0_timing.gb,high,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/ppu/intr_2_mode0_timing.gb,high,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/ppu/intr_2_mode3_timing.gb,high,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/ppu/intr_2_oam_ok_timing.gb,high,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/ppu/stat_irq_blocking.gb,high,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/ppu/stat_lyc_onoff.gb,high,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/ppu/lcdon_write_timing-GS.gb,high,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/ppu/vblank_stat_intr-GS.gb,high,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/ppu/hblank_ly_scx_timing-GS.gb,high,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/ppu/intr_1_2_timing-GS.gb,high,2200
+mooneye,mooneye,mooneye/acceptance/acceptance/ppu/intr_2_mode0_timing_sprites.gb,high,2200
+
+# ── Mooneye: Emulator-only MBC1 (medium) ──────────────────────────────────────
+mooneye,mooneye,mooneye/acceptance/emulator-only/mbc1/bits_bank1.gb,medium,1600
+mooneye,mooneye,mooneye/acceptance/emulator-only/mbc1/bits_bank2.gb,medium,1600
+mooneye,mooneye,mooneye/acceptance/emulator-only/mbc1/bits_mode.gb,medium,1600
+mooneye,mooneye,mooneye/acceptance/emulator-only/mbc1/bits_ramg.gb,medium,1600
+mooneye,mooneye,mooneye/acceptance/emulator-only/mbc1/ram_64kb.gb,medium,1600
+mooneye,mooneye,mooneye/acceptance/emulator-only/mbc1/ram_256kb.gb,medium,1600
+mooneye,mooneye,mooneye/acceptance/emulator-only/mbc1/rom_512kb.gb,medium,1600
+mooneye,mooneye,mooneye/acceptance/emulator-only/mbc1/rom_1Mb.gb,medium,1600
+mooneye,mooneye,mooneye/acceptance/emulator-only/mbc1/rom_2Mb.gb,medium,1600
+mooneye,mooneye,mooneye/acceptance/emulator-only/mbc1/rom_4Mb.gb,medium,1600
+mooneye,mooneye,mooneye/acceptance/emulator-only/mbc1/rom_8Mb.gb,medium,1600
+
+# ── Mooneye: Emulator-only MBC2 (medium) ──────────────────────────────────────
+mooneye,mooneye,mooneye/acceptance/emulator-only/mbc2/bits_ramg.gb,medium,1600
+mooneye,mooneye,mooneye/acceptance/emulator-only/mbc2/bits_romb.gb,medium,1600
+mooneye,mooneye,mooneye/acceptance/emulator-only/mbc2/ram.gb,medium,1600
+mooneye,mooneye,mooneye/acceptance/emulator-only/mbc2/rom_512kb.gb,medium,1600
+mooneye,mooneye,mooneye/acceptance/emulator-only/mbc2/rom_1Mb.gb,medium,1600
+mooneye,mooneye,mooneye/acceptance/emulator-only/mbc2/rom_2Mb.gb,medium,1600
+
+# ── Mooneye: Emulator-only MBC5 (medium) ──────────────────────────────────────
+mooneye,mooneye,mooneye/acceptance/emulator-only/mbc5/rom_512kb.gb,medium,1600
+mooneye,mooneye,mooneye/acceptance/emulator-only/mbc5/rom_1Mb.gb,medium,1600
+mooneye,mooneye,mooneye/acceptance/emulator-only/mbc5/rom_2Mb.gb,medium,1600
+mooneye,mooneye,mooneye/acceptance/emulator-only/mbc5/rom_4Mb.gb,medium,1600
+mooneye,mooneye,mooneye/acceptance/emulator-only/mbc5/rom_8Mb.gb,medium,1600

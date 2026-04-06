@@ -1,0 +1,7 @@
+# EmulationUniverse debugger script: break on VBlank interrupt vector
+
+break 0040
+run 2000000
+regs
+mem ff0f 8
+quit

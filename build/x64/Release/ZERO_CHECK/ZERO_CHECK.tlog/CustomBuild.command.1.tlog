@@ -1,0 +1,10 @@
+^C:\USERS\TWINC\SDEINC\STREAMERANALYTICSTOOL\EXTENSION-TERMINAL-SAMPLE\BUILD\CMAKEFILES\301BA88DCE083106FFBB33E895DCF522\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/twinc/SDEInc/StreamerAnalyticsTool/extension-terminal-sample -BC:/Users/twinc/SDEInc/StreamerAnalyticsTool/extension-terminal-sample/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/twinc/SDEInc/StreamerAnalyticsTool/extension-terminal-sample/build/EmulationUniverse.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

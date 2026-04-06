@@ -1,0 +1,96 @@
+﻿{
+    "generatedAt":  "2026-04-05T02:24:36",
+    "runs":  [
+                 {
+                     "generatedAt":  "2026-04-05T01:10:56",
+                     "total":  8,
+                     "passed":  8,
+                     "failed":  0,
+                     "passRate":  100
+                 },
+                 {
+                     "generatedAt":  "2026-04-05T01:27:49",
+                     "total":  14,
+                     "passed":  14,
+                     "failed":  0,
+                     "passRate":  100
+                 },
+                 {
+                     "generatedAt":  "2026-04-05T01:34:42",
+                     "total":  22,
+                     "passed":  22,
+                     "failed":  0,
+                     "passRate":  100
+                 },
+                 {
+                     "generatedAt":  "2026-04-05T01:41:55",
+                     "total":  29,
+                     "passed":  29,
+                     "failed":  0,
+                     "passRate":  100
+                 },
+                 {
+                     "generatedAt":  "2026-04-05T01:43:56",
+                     "total":  33,
+                     "passed":  33,
+                     "failed":  0,
+                     "passRate":  100
+                 },
+                 {
+                     "generatedAt":  "2026-04-05T01:50:44",
+                     "total":  38,
+                     "passed":  38,
+                     "failed":  0,
+                     "passRate":  100
+                 },
+                 {
+                     "generatedAt":  "2026-04-05T01:53:44",
+                     "total":  43,
+                     "passed":  43,
+                     "failed":  0,
+                     "passRate":  100
+                 },
+                 {
+                     "generatedAt":  "2026-04-05T01:58:54",
+                     "total":  47,
+                     "passed":  47,
+                     "failed":  0,
+                     "passRate":  100
+                 },
+                 {
+                     "generatedAt":  "2026-04-05T02:02:33",
+                     "total":  51,
+                     "passed":  51,
+                     "failed":  0,
+                     "passRate":  100
+                 },
+                 {
+                     "generatedAt":  "2026-04-05T02:06:09",
+                     "total":  55,
+                     "passed":  55,
+                     "failed":  0,
+                     "passRate":  100
+                 },
+                 {
+                     "generatedAt":  "2026-04-05T02:14:27",
+                     "total":  59,
+                     "passed":  59,
+                     "failed":  0,
+                     "passRate":  100
+                 },
+                 {
+                     "generatedAt":  "2026-04-05T02:19:27",
+                     "total":  62,
+                     "passed":  62,
+                     "failed":  0,
+                     "passRate":  100
+                 },
+                 {
+                     "generatedAt":  "2026-04-05T02:24:35",
+                     "total":  65,
+                     "passed":  65,
+                     "failed":  0,
+                     "passRate":  100
+                 }
+             ]
+}

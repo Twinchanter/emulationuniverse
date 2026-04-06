@@ -1,0 +1,171 @@
+// See https://go.microsoft.com/fwlink/?LinkId=733558
+// for the documentation about the tasks.json format
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "npm",
+            "script": "watch",
+            "problemMatcher": "$tsc-watch",
+            "isBackground": true,
+            "presentation": {
+                "reveal": "never"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Build EmulationUniverse",
+            "type": "shell",
+            "command": "\"C:/Program Files/CMake/bin/cmake.exe\" --build \"${workspaceFolder}/build\" --config Release",
+            "problemMatcher": []
+        },
+        {
+            "label": "Run Pokemon Red",
+            "type": "shell",
+            "command": "\"${workspaceFolder}/build/Release/emulationuniverse.exe\" \"${workspaceFolder}/roms/gameboy/pokemon_red_sgb.gb\"",
+            "dependsOn": "Build EmulationUniverse",
+            "problemMatcher": []
+        },
+        {
+            "label": "Run Pokemon Debug Script",
+            "type": "shell",
+            "command": "\"${workspaceFolder}/build/Release/emulationuniverse.exe\" \"${workspaceFolder}/roms/gameboy/pokemon_red_sgb.gb\" --debug-script \"${workspaceFolder}/debug-scripts/pokemon_red_profile.dbg\" --debug-log \"${workspaceFolder}/logs/pokemon-red-debug.log\"",
+            "dependsOn": "Build EmulationUniverse",
+            "problemMatcher": []
+        },
+        {
+            "label": "Run ROM Suite Tests",
+            "type": "shell",
+            "command": "\"${workspaceFolder}/build/tests/Release/gbemu_system_tests.exe\"",
+            "dependsOn": "Build EmulationUniverse",
+            "problemMatcher": []
+        },
+        {
+            "label": "Run CPU Micro Tests",
+            "type": "shell",
+            "command": "\"${workspaceFolder}/build/tests/Release/gbemu_cpu_micro_tests.exe\"",
+            "dependsOn": "Build EmulationUniverse",
+            "problemMatcher": []
+        },
+        {
+            "label": "Run CPU Micro + Dashboard",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-Command",
+                "& \"${workspaceFolder}/build/tests/Release/gbemu_cpu_micro_tests.exe\"; $testExit = $LASTEXITCODE; powershell -NoProfile -ExecutionPolicy Bypass -File \"${workspaceFolder}/tests/Generate-CpuMicroDashboard.ps1\" -CsvPath \"${workspaceFolder}/tests/logs/cpu_micro_results.csv\" -OutMarkdown \"${workspaceFolder}/tests/logs/cpu_micro_dashboard.md\" -OutJson \"${workspaceFolder}/tests/logs/cpu_micro_summary.json\"; $dashExit = $LASTEXITCODE; powershell -NoProfile -ExecutionPolicy Bypass -File \"${workspaceFolder}/tests/Update-CpuMicroTrend.ps1\" -SummaryJson \"${workspaceFolder}/tests/logs/cpu_micro_summary.json\" -HistoryJson \"${workspaceFolder}/tests/logs/cpu_micro_history.json\" -OutMarkdown \"${workspaceFolder}/tests/logs/cpu_micro_trend.md\"; $trendExit = $LASTEXITCODE; if ($testExit -ne 0) { exit $testExit } elseif ($dashExit -ne 0) { exit $dashExit } else { exit $trendExit }"
+            ],
+            "dependsOn": "Build EmulationUniverse",
+            "problemMatcher": []
+        },
+        {
+            "label": "Generate CPU Micro Dashboard",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}/tests/Generate-CpuMicroDashboard.ps1",
+                "-CsvPath",
+                "${workspaceFolder}/tests/logs/cpu_micro_results.csv",
+                "-OutMarkdown",
+                "${workspaceFolder}/tests/logs/cpu_micro_dashboard.md",
+                "-OutJson",
+                "${workspaceFolder}/tests/logs/cpu_micro_summary.json"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Update CPU Micro Trend",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}/tests/Update-CpuMicroTrend.ps1",
+                "-SummaryJson",
+                "${workspaceFolder}/tests/logs/cpu_micro_summary.json",
+                "-HistoryJson",
+                "${workspaceFolder}/tests/logs/cpu_micro_history.json",
+                "-OutMarkdown",
+                "${workspaceFolder}/tests/logs/cpu_micro_trend.md"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Validate ROM Suite Assets",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}/tests/Validate-RomSuiteAssets.ps1",
+                "-ManifestPath",
+                "${workspaceFolder}/tests/rom_manifest.csv",
+                "-OutMarkdown",
+                "${workspaceFolder}/tests/logs/rom_assets_readiness.md",
+                "-OutJson",
+                "${workspaceFolder}/tests/logs/rom_assets_readiness.json"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Import ROM Suite Assets",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-Command",
+                "$src=$env:EMU_TEST_ASSET_SOURCE; if ([string]::IsNullOrWhiteSpace($src)) { Write-Error 'Set EMU_TEST_ASSET_SOURCE to your local test ROM source root.'; exit 2 }; powershell -NoProfile -ExecutionPolicy Bypass -File \"${workspaceFolder}/tests/Import-RomSuiteAssets.ps1\" -ManifestPath \"${workspaceFolder}/tests/rom_manifest.csv\" -SourceRoot $src -DestinationRoot \"${workspaceFolder}/roms/test\" -OutMarkdown \"${workspaceFolder}/tests/logs/rom_assets_import.md\" -OutJson \"${workspaceFolder}/tests/logs/rom_assets_import.json\""
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Run ROM Suite + Dashboard",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-Command",
+                "powershell -NoProfile -ExecutionPolicy Bypass -File \"${workspaceFolder}/tests/Validate-RomSuiteAssets.ps1\" -ManifestPath \"${workspaceFolder}/tests/rom_manifest.csv\" -OutMarkdown \"${workspaceFolder}/tests/logs/rom_assets_readiness.md\" -OutJson \"${workspaceFolder}/tests/logs/rom_assets_readiness.json\"; $assetExit = $LASTEXITCODE; if ($assetExit -ne 0) { exit $assetExit }; & \"${workspaceFolder}/build/tests/Release/gbemu_system_tests.exe\"; $testExit = $LASTEXITCODE; powershell -NoProfile -ExecutionPolicy Bypass -File \"${workspaceFolder}/tests/Generate-RomSuiteDashboard.ps1\" -CsvPath \"${workspaceFolder}/tests/logs/rom_suite_results.csv\" -OutMarkdown \"${workspaceFolder}/tests/logs/rom_suite_dashboard.md\" -OutJson \"${workspaceFolder}/tests/logs/rom_suite_summary.json\"; $dashExit = $LASTEXITCODE; powershell -NoProfile -ExecutionPolicy Bypass -File \"${workspaceFolder}/tests/Update-RomSuiteTrend.ps1\" -SummaryJson \"${workspaceFolder}/tests/logs/rom_suite_summary.json\" -HistoryJson \"${workspaceFolder}/tests/logs/rom_suite_history.json\" -OutMarkdown \"${workspaceFolder}/tests/logs/rom_suite_trend.md\"; $trendExit = $LASTEXITCODE; if ($testExit -ne 0) { exit $testExit } elseif ($dashExit -ne 0) { exit $dashExit } else { exit $trendExit }"
+            ],
+            "dependsOn": "Build EmulationUniverse",
+            "problemMatcher": []
+        },
+        {
+            "label": "Update ROM Suite Trend",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}/tests/Update-RomSuiteTrend.ps1",
+                "-SummaryJson",
+                "${workspaceFolder}/tests/logs/rom_suite_summary.json",
+                "-HistoryJson",
+                "${workspaceFolder}/tests/logs/rom_suite_history.json",
+                "-OutMarkdown",
+                "${workspaceFolder}/tests/logs/rom_suite_trend.md"
+            ],
+            "problemMatcher": []
+        }
+    ]
+}

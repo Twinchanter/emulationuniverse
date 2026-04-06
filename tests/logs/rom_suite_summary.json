@@ -1,0 +1,76 @@
+﻿{
+    "generatedAt":  "2026-04-05T02:33:19",
+    "sourceCsv":  "tests/logs/rom_suite_results.csv",
+    "totals":  {
+                   "total":  4,
+                   "passed":  0,
+                   "failed":  4,
+                   "passRate":  0
+               },
+    "priorities":  [
+                       {
+                           "priority":  "critical",
+                           "total":  2,
+                           "passed":  0,
+                           "failed":  2,
+                           "passRate":  0
+                       },
+                       {
+                           "priority":  "high",
+                           "total":  2,
+                           "passed":  0,
+                           "failed":  2,
+                           "passRate":  0
+                       }
+                   ],
+    "suites":  [
+                   {
+                       "suite":  "blargg",
+                       "total":  2,
+                       "passed":  0,
+                       "failed":  2,
+                       "passRate":  0
+                   },
+                   {
+                       "suite":  "mooneye",
+                       "total":  2,
+                       "passed":  0,
+                       "failed":  2,
+                       "passRate":  0
+                   }
+               ],
+    "failures":  [
+                     {
+                         "suite":  "blargg",
+                         "priority":  "critical",
+                         "maxFrames":  1600,
+                         "rom":  "blargg/cpu_instrs/cpu_instrs.gb",
+                         "passed":  "FAIL",
+                         "detail":  "missing ROM file"
+                     },
+                     {
+                         "suite":  "blargg",
+                         "priority":  "critical",
+                         "maxFrames":  1600,
+                         "rom":  "blargg/instr_timing/instr_timing.gb",
+                         "passed":  "FAIL",
+                         "detail":  "missing ROM file"
+                     },
+                     {
+                         "suite":  "mooneye",
+                         "priority":  "high",
+                         "maxFrames":  2200,
+                         "rom":  "mooneye/acceptance/ppu/lcdon_write_timing.gb",
+                         "passed":  "FAIL",
+                         "detail":  "missing ROM file"
+                     },
+                     {
+                         "suite":  "mooneye",
+                         "priority":  "high",
+                         "maxFrames":  2200,
+                         "rom":  "mooneye/acceptance/timer/tim00.gb",
+                         "passed":  "FAIL",
+                         "detail":  "missing ROM file"
+                     }
+                 ]
+}

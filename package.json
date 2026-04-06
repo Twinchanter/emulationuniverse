@@ -1,0 +1,120 @@
+{
+	"name": "emulationuniverse",
+	"displayName": "EmulationUniverse",
+	"description": "EmulationUniverse tooling and emulator development workspace",
+	"version": "0.0.1",
+	"publisher": "vscode-samples",
+	"private": true,
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Microsoft/vscode-extension-samples"
+	},
+	"engines": {
+		"vscode": "^1.100.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "emulationUniverse.terminal.create",
+				"title": "EmulationUniverse: Create Terminal"
+			},
+			{
+				"command": "emulationUniverse.terminal.clear",
+				"title": "EmulationUniverse: Clear Terminal"
+			},
+			{
+				"command": "emulationUniverse.ui.openControlCenter",
+				"title": "EmulationUniverse: Open Control Center"
+			},
+			{
+				"command": "emulationUniverse.settings.openFile",
+				"title": "EmulationUniverse: Open Settings File"
+			},
+			{
+				"command": "emulationUniverse.emulator.runPokemonRed",
+				"title": "EmulationUniverse: Run Pokemon Red"
+			},
+			{
+				"command": "emulationUniverse.emulator.runPokemonDebugProfile",
+				"title": "EmulationUniverse: Run Pokemon Debug Profile"
+			},
+			{
+				"command": "emulationUniverse.file.loadRom",
+				"title": "EmulationUniverse: File - Load ROM/Disc"
+			},
+			{
+				"command": "emulationUniverse.file.recentGames",
+				"title": "EmulationUniverse: File - Recent Games"
+			},
+			{
+				"command": "emulationUniverse.emulation.pause",
+				"title": "EmulationUniverse: Emulation - Start/Pause"
+			},
+			{
+				"command": "emulationUniverse.emulation.reset",
+				"title": "EmulationUniverse: Emulation - Reset"
+			},
+			{
+				"command": "emulationUniverse.emulation.fastForward",
+				"title": "EmulationUniverse: Emulation - Fast-Forward"
+			},
+			{
+				"command": "emulationUniverse.emulation.saveState",
+				"title": "EmulationUniverse: Emulation - Save State"
+			},
+			{
+				"command": "emulationUniverse.emulation.loadState",
+				"title": "EmulationUniverse: Emulation - Load State"
+			},
+			{
+				"command": "emulationUniverse.input.controllerSetup",
+				"title": "EmulationUniverse: Input - Controller Setup"
+			},
+			{
+				"command": "emulationUniverse.input.scanControllers",
+				"title": "EmulationUniverse: Input - Connected Controller Scan"
+			},
+			{
+				"command": "emulationUniverse.view.fullscreen",
+				"title": "EmulationUniverse: View - Fullscreen"
+			},
+			{
+				"command": "emulationUniverse.debug.cpuDebugger",
+				"title": "EmulationUniverse: Debug - CPU Debugger"
+			},
+			{
+				"command": "emulationUniverse.debug.stopSession",
+				"title": "EmulationUniverse: Debug - Stop Session"
+			},
+			{
+				"command": "emulationUniverse.help.documentation",
+				"title": "EmulationUniverse: Help - Documentation"
+			},
+			{
+				"command": "emulationUniverse.help.about",
+				"title": "EmulationUniverse: Help - About"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"lint": "eslint"
+	},
+	"devDependencies": {
+		"@eslint/js": "^9.13.0",
+		"@stylistic/eslint-plugin": "^2.9.0",
+		"@types/node": "^22",
+		"@types/vscode": "^1.100.0",
+		"eslint": "^9.13.0",
+		"typescript": "^5.9.2",
+		"typescript-eslint": "^8.39.0"
+	}
+}

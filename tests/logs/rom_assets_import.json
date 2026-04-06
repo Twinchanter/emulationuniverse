@@ -1,0 +1,54 @@
+﻿{
+    "generatedAt":  "2026-04-05T02:32:26",
+    "manifestPath":  "tests/rom_manifest.csv",
+    "sourceRoot":  "C:\\Users\\twinc\\SDEInc\\StreamerAnalyticsTool\\extension-terminal-sample\\roms\\test\\blargg",
+    "destinationRoot":  "C:\\Users\\twinc\\SDEInc\\StreamerAnalyticsTool\\extension-terminal-sample\\roms\\test",
+    "totals":  {
+                   "total":  4,
+                   "copied":  0,
+                   "alreadyPresent":  0,
+                   "unresolved":  4
+               },
+    "entries":  [
+                    {
+                        "suite":  "blargg",
+                        "mode":  "blargg",
+                        "priority":  "critical",
+                        "relativePath":  "blargg/cpu_instrs/cpu_instrs.gb",
+                        "source":  "",
+                        "destination":  "roms\\test\\blargg\\cpu_instrs\\cpu_instrs.gb",
+                        "status":  "missing-in-source",
+                        "detail":  "file not found under source root"
+                    },
+                    {
+                        "suite":  "blargg",
+                        "mode":  "blargg",
+                        "priority":  "critical",
+                        "relativePath":  "blargg/instr_timing/instr_timing.gb",
+                        "source":  "",
+                        "destination":  "roms\\test\\blargg\\instr_timing\\instr_timing.gb",
+                        "status":  "missing-in-source",
+                        "detail":  "file not found under source root"
+                    },
+                    {
+                        "suite":  "mooneye",
+                        "mode":  "mooneye",
+                        "priority":  "high",
+                        "relativePath":  "mooneye/acceptance/ppu/lcdon_write_timing.gb",
+                        "source":  "",
+                        "destination":  "roms\\test\\mooneye\\acceptance\\ppu\\lcdon_write_timing.gb",
+                        "status":  "missing-in-source",
+                        "detail":  "file not found under source root"
+                    },
+                    {
+                        "suite":  "mooneye",
+                        "mode":  "mooneye",
+                        "priority":  "high",
+                        "relativePath":  "mooneye/acceptance/timer/tim00.gb",
+                        "source":  "",
+                        "destination":  "roms\\test\\mooneye\\acceptance\\timer\\tim00.gb",
+                        "status":  "missing-in-source",
+                        "detail":  "file not found under source root"
+                    }
+                ]
+}
