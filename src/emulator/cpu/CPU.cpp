@@ -125,6 +125,10 @@ u32 CPU::handleInterrupts() {
             // Disable IME (interrupts are non-reentrant by default)
             m_IME = false;
 
+            // LR35902 interrupt entry takes 5 M-cycles total.
+            // Keep one lead-in M-cycle before stack writes.
+            syncHardware(4);
+
             // Interrupt dispatch is not atomic: IE can be modified by the two
             // stack writes while pushing PC, which can cancel or retarget the
             // dispatch before the final vector is chosen.
@@ -154,6 +158,8 @@ u32 CPU::handleInterrupts() {
             if (selectedBit < 0) {
                 // The dispatch was canceled by the upper-byte push touching IE.
                 m_reg.PC = 0x0000u;
+                // Final vector-fetch cycle still elapses.
+                syncHardware(4);
                 return 20;
             }
 
@@ -167,6 +173,9 @@ u32 CPU::handleInterrupts() {
                 0x0058, // Serial
                 0x0060  // Joypad
             };
+
+            // Final M-cycle: vector fetch/dispatch completion.
+            syncHardware(4);
             m_reg.PC = VECTORS[selectedBit];
 
             // ISR dispatch takes 5 M-cycles (20 T-cycles)

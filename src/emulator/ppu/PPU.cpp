@@ -7,6 +7,7 @@
 #include "PPU.hpp"
 #include <algorithm>
 #include <cstring>
+#include <array>
 
 namespace GB {
 
@@ -64,6 +65,7 @@ u32 PPU::tick(u32 cycles) {
         if (m_modeDotsRemaining > 0) {
             --m_modeDotsRemaining;
         }
+
         if (m_modeDotsRemaining > 0) {
             continue;
         }
@@ -84,8 +86,9 @@ u32 PPU::tick(u32 cycles) {
             case PPUMode::Drawing:
                 renderScanline();
                 if (m_firstEnabledLine) {
-                    // First post-enable line has a 72T startup segment before mode 3.
-                    m_currentHBlankCycles = 456 - 72 - m_currentMode3Cycles;
+                    // LCD-on startup line has a shorter pre-draw phase; once mode 3
+                    // completes, HBlank timing matches the normal 204-dot base.
+                    m_currentHBlankCycles = 204;
                     m_firstEnabledLine = false;
                 }
                 setMode(PPUMode::HBlank);
@@ -201,24 +204,37 @@ int PPU::computeMode3CyclesForCurrentLine() const {
     
     const int scxMod = static_cast<int>(m_scx & 0x07u);
 
-    // Pan Docs: At start of Mode 3, rendering pauses for SCX%8 dots while
-    // discarding scrolled pixels. This directly extends Mode 3 by SCX%8 T-cycles.
-    mode3 += scxMod;
+    // SCX timing groups observed by hblank_ly_scx_timing-GS:
+    //   SCX%8 == 0   => +0 dots
+    //   SCX%8 == 1-4 => +4 dots
+    //   SCX%8 == 5-7 => +8 dots
+    if (scxMod >= 5) {
+        mode3 += 8;
+    } else if (scxMod >= 1) {
+        mode3 += 4;
+    }
 
-    // OBJ penalty algorithm (Pan Docs):
-    // For each OBJ overlapping this scanline (up to 10):
-    //   - OAM X==0: 11-dot penalty (completely off left of screen)
-    //   - Otherwise: 6 dots (tile fetch) + max(0, (7 - tile_pixel_offset) - 2)
-    //     where tile_pixel_offset = (oamX - 1 + scxMod) & 7
-    //     Each BG background "tile" consulted for a second OBJ that falls in the
-    //     same tile incurs 0 extra dots for the BG portion (tile already in cache).
+    // OBJ penalty algorithm (Pan Docs-inspired tile-cache model):
+    // For each OBJ overlapping this scanline (up to 10), add:
+    //   - 6 dots for OBJ fetch itself
+    //   - plus a BG wait for the first OBJ that consults each BG tile
+    //     bgWait = max(0, (7 - tile_pixel_offset) - 2)
+    //     tile_pixel_offset = (oamX + scxMod) & 7
+    // Sprites with X >= 168 are fully off-screen right and don't contribute.
     if (spritesEnabled() && m_ly < SCREEN_HEIGHT) {
         const int spriteHeight = tallSprites() ? 16 : 8;
-        int considered = 0;
+        int selected = 0;
         // Track which BG tiles have been "consulted" to implement tile-cache logic
         bool tileConsidered[21] = {};  // tiles 0..20 cover 160 pixels with 8px tiles
 
-        for (int i = 0; i < OAM_ENTRIES && considered < 10; ++i) {
+        struct SpriteTimingInfo {
+            int oamX;
+            int index;
+        };
+        std::array<SpriteTimingInfo, 10> visible{};
+
+        // Mode 2 selection: keep first 10 matching sprites in OAM order.
+        for (int i = 0; i < OAM_ENTRIES && selected < 10; ++i) {
             const u16 base = static_cast<u16>(i * 4);
             const int oamY = static_cast<int>(m_oam[base + 0]);
             const int oamX = static_cast<int>(m_oam[base + 1]);
@@ -229,30 +245,38 @@ int PPU::computeMode3CyclesForCurrentLine() const {
                 continue;
             }
 
-            ++considered;
-
-            if (oamX == 0) {
-                // Completely off-screen left: 11-dot penalty
-                mode3 += 11;
-            } else {
-                // Tile index of the BG tile that contains this sprite's leftmost pixel
-                // The pixel in that tile: (oamX - 1 + scxMod) % 8
-                const int tilePixelOffset = (oamX - 1 + scxMod) & 0x07;
-                const int tileIdx        = (oamX - 1 + scxMod) >> 3;
-
-                // 6-dot flat penalty (OBJ tile fetch)
-                int penalty = 6;
-
-                // BG fetch wait: only if this is the first OBJ considering this tile
-                if (tileIdx < 21 && !tileConsidered[tileIdx]) {
-                    tileConsidered[tileIdx] = true;
-                    // Pixels strictly to the right of The Pixel in the tile: 7 - tilePixelOffset
-                    const int bgWait = std::max(0, (7 - tilePixelOffset) - 2);
-                    penalty += bgWait;
-                }
-
-                mode3 += penalty;
+            // X>=168 is fully off-screen right and has no mode-3 penalty.
+            if (oamX >= 168) {
+                continue;
             }
+
+            visible[selected++] = {oamX, i};
+        }
+
+        // Mode 3 penalty evaluation order: left-to-right, then OAM index.
+        std::sort(visible.begin(), visible.begin() + selected,
+            [](const SpriteTimingInfo& a, const SpriteTimingInfo& b) {
+                if (a.oamX != b.oamX) return a.oamX < b.oamX;
+                return a.index < b.index;
+            });
+
+        for (int s = 0; s < selected; ++s) {
+            const int oamX = visible[s].oamX;
+            // Tile index of the BG tile that contains this sprite phase.
+            const int tilePixelOffset = (oamX + scxMod) & 0x07;
+            const int tileIdx         = (oamX + scxMod) >> 3;
+
+            // 6-dot flat penalty (OBJ tile fetch)
+            int penalty = 6;
+
+            // BG fetch wait: only if this is the first OBJ considering this tile.
+            if (tileIdx >= 0 && tileIdx < 21 && !tileConsidered[tileIdx]) {
+                tileConsidered[tileIdx] = true;
+                const int bgWait = std::max(0, (7 - tilePixelOffset) - 2);
+                penalty += bgWait;
+            }
+
+            mode3 += penalty;
         }
     }
 
@@ -430,11 +454,15 @@ void PPU::writeVRAM(u16 addr, u8 value) {
 }
 
 u8 PPU::readOAM(u16 addr) const {
-    if (m_mode == PPUMode::OAMScan || m_mode == PPUMode::Drawing) return 0xFF;
+    // DMG timing quirk: during mode 2, OAM becomes accessible during the
+    // final 4 dots (last M-cycle) before mode 3 starts.
+    const bool oamBlockedInMode2 = (m_mode == PPUMode::OAMScan) && (m_modeDotsRemaining > 4);
+    if (oamBlockedInMode2 || m_mode == PPUMode::Drawing) return 0xFF;
     return m_oam[addr - OAM_START];
 }
 void PPU::writeOAM(u16 addr, u8 value) {
-    if (m_mode != PPUMode::OAMScan && m_mode != PPUMode::Drawing) {
+    const bool oamBlockedInMode2 = (m_mode == PPUMode::OAMScan) && (m_modeDotsRemaining > 4);
+    if (!oamBlockedInMode2 && m_mode != PPUMode::Drawing) {
         m_oam[addr - OAM_START] = value;
     }
 }

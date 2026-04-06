@@ -1,0 +1,4 @@
+suite,mode,path,priority,max_frames
+mooneye,mooneye,mooneye/acceptance/acceptance/ppu/lcdon_write_timing-GS.gb,high,2000
+mooneye,mooneye,mooneye/acceptance/acceptance/ppu/hblank_ly_scx_timing-GS.gb,high,2000
+mooneye,mooneye,mooneye/acceptance/acceptance/ppu/intr_2_mode0_timing_sprites.gb,high,2000

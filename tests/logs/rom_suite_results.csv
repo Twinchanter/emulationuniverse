@@ -21,7 +21,7 @@ blargg,high,1200,"blargg/mem_timing-2/rom_singles/01-read_timing.gb",PASS,"blarg
 blargg,high,1200,"blargg/mem_timing-2/rom_singles/02-write_timing.gb",PASS,"blargg status 0x00"
 blargg,high,1200,"blargg/mem_timing-2/rom_singles/03-modify_timing.gb",PASS,"blargg status 0x00"
 blargg,medium,2000,"blargg/oam_bug/oam_bug.gb",FAIL,"blargg status=0x1"
-blargg,medium,1600,"blargg/oam_bug/rom_singles/1-lcd_sync.gb",FAIL,"blargg status=0x3"
+blargg,medium,1600,"blargg/oam_bug/rom_singles/1-lcd_sync.gb",FAIL,"blargg status=0x2"
 blargg,medium,1600,"blargg/oam_bug/rom_singles/2-causes.gb",FAIL,"blargg status=0x2"
 blargg,medium,1600,"blargg/oam_bug/rom_singles/3-non_causes.gb",PASS,"blargg status 0x00"
 blargg,medium,1600,"blargg/oam_bug/rom_singles/4-scanline_timing.gb",FAIL,"blargg status=0x3"
